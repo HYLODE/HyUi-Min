@@ -8,9 +8,7 @@ from dash import Input, Output, callback, dcc, html
 from typing import Optional
 
 from models.beds import Bed, Department, Room
-from models.electives import MergedData
 from models.sitrep import SitrepRow
-from models.hymind import IcuDischarge
 from web import ids, SITREP_DEPT2WARD_MAPPING
 from web.logger import logger, logger_timeit
 
