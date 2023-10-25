@@ -1,0 +1,10 @@
+apiVersion: 1
+providers:
+  - name: 'default' # can be any name
+    orgId: 1
+    folder: '' # Dashboard will be saved in the general folder
+    type: file
+    disableDeletion: false
+    editable: true
+    options:
+      path: /etc/grafana/provisioning/dashboards
