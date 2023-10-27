@@ -89,19 +89,6 @@ def create_side_nave_content() -> dmc.Stack:
                 labelPosition="left",
                 label=[
                     DashIconify(
-                        icon="carbon:scalpel",
-                        width=20,
-                        style={"marginRight": 10},
-                        color=dmc.theme.DEFAULT_COLORS["indigo"][5],
-                    ),
-                    "Surgery",
-                ],
-                my=20,
-            ),
-            dmc.Divider(
-                labelPosition="left",
-                label=[
-                    DashIconify(
                         icon="healthicons:ambulance-outline",
                         width=20,
                         style={"marginRight": 10},
