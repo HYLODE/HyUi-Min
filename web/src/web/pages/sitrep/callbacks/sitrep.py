@@ -27,10 +27,20 @@ def _store_sitrep(dept: str, sitreps: dict) -> Any:
         additonal patient level data
 
     """
+    logger.warning("PRINTING LOTS OF STUFF NOW!")
+    print(f"Sitreps: {sitreps}")
     # ward2dept = {v:k for k,v in SITREP_DEPT2WARD_MAPPING.items()}
     # department = ward2dept.get(dept)
     ward = SITREP_DEPT2WARD_MAPPING.get(dept)
+    print(f"{ward=}")
     if not ward:
         warnings.warn(f"No sitrep data available for {ward}")
         return [{}]
+    print(f"{sitreps[ward]=}")
     return sitreps[ward]
+
+
+@callback(Output(ids.SITREP_STORE, "data"), Input(ids.SITREP_STORE, "data"))
+def output_store_sitrep(sitrep_store: dict) -> dict:
+    """Debugging function"""
+    return sitrep_store
