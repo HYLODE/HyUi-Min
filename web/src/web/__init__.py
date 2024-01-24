@@ -15,7 +15,6 @@ API_URLS = {
     web_ids.DEPT_STORE: f"{get_settings().api_url}/baserow/departments/",
     web_ids.ROOM_STORE: f"{get_settings().api_url}/baserow/rooms/",
     web_ids.BEDS_STORE: f"{get_settings().api_url}/baserow/beds/",
-    web_ids.ELECTIVES_STORE: f"{get_settings().api_url}/electives/",
     ed_ids.PATIENTS_STORE: f"{get_settings().api_url}/ed/individual/",
     ed_ids.AGGREGATE_STORE: f"{get_settings().api_url}/ed/aggregate/",
 }
