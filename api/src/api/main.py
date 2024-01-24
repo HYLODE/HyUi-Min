@@ -17,8 +17,6 @@ from api.demo.router import mock_router as mock_demo_router
 from api.demo.router import router as demo_router
 from api.hospital.router import mock_router as mock_hospital_router
 from api.hospital.router import router as hospital_router
-from api.hymind.router import mock_router as mock_hymind_router
-from api.hymind.router import router as hymind_router
 from api.logger import logger
 from api.sitrep.router import mock_router as mock_sitrep_router
 from api.sitrep.router import router as sitrep_router
@@ -49,9 +47,6 @@ app.include_router(beds_router)
 mock_router.include_router(mock_beds_router)
 
 app.include_router(consults_router)
-
-app.include_router(hymind_router)
-mock_router.include_router(mock_hymind_router)
 
 # Finally include the mock router.
 app.include_router(mock_router)
