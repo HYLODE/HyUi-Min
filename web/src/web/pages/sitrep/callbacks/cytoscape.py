@@ -272,18 +272,6 @@ def _prepare_cyto_elements_ward(
     Use the dept_grouper == ALL_ICUs to trigger the switch to using
     positions for preset layout
     """
-    logger.info("#######   INSIDE _PREPARE_ELEMENTS_CYTOSCAPE_WARD    ########")
-    logger.info(f"{elements=}")
-    logger.info(f"{census=}")
-    logger.info(f"{depts=}")
-    logger.info(f"{rooms=}")
-    logger.info(f"{beds=}")
-    logger.info(f"{sitrep=}")
-    logger.info(f"{discharges=}")
-    logger.info(f"{dept=}")
-    logger.info(f"{bed_submit_store=}")
-    logger.info(f"{dept_grouper=}")
-
     if callback_context.triggered_id != ids.ACC_BED_SUBMIT_STORE:
         preset_map_positions = True if dept_grouper == "ALL_ICUS" else False
         elements = _make_elements(

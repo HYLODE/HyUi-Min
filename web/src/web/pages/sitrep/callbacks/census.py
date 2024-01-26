@@ -6,7 +6,7 @@ from web.celery_tasks import requests_try_cache
 from models.census import CensusRow
 from web import SITREP_DEPT2WARD_MAPPING
 from web.config import get_settings
-from web.logger import logger_timeit, logger
+from web.logger import logger_timeit
 from web.pages.sitrep import CAMPUSES, ids
 
 
@@ -31,7 +31,6 @@ def _store_census(
         Filtered list of CensusRow dictionaries
 
     """
-    logger.info(f"DEPTS_OPEN_STORE_NAMES: {depts_open_names}")
     if dept_grouper == "ALL_ICUS":
         url = f"{get_settings().api_url}/census/"
         params = {"departments": SITREP_DEPT2WARD_MAPPING.keys()}
