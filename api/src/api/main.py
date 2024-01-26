@@ -12,7 +12,6 @@ from api.beds.router import mock_router as mock_beds_router
 from api.beds.router import router as beds_router
 from api.census.router import mock_router as mock_census_router
 from api.census.router import router as census_router
-from api.consults.router import router as consults_router
 from api.demo.router import mock_router as mock_demo_router
 from api.demo.router import router as demo_router
 from api.hospital.router import mock_router as mock_hospital_router
@@ -47,8 +46,6 @@ mock_router.include_router(mock_sitrep_router)
 
 app.include_router(beds_router)
 mock_router.include_router(mock_beds_router)
-
-app.include_router(consults_router)
 
 app.include_router(ros_router)
 
