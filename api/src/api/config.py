@@ -17,9 +17,6 @@ class Settings(BaseSettings):
     hycastle_url: AnyHttpUrl
     towermail_url: AnyHttpUrl
 
-    electives_tap_url: AnyHttpUrl
-    emergency_tap_url: AnyHttpUrl
-
     echo_sql: bool = False
 
     icu_admission_predictions: bool = False
