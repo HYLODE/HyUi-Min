@@ -40,7 +40,6 @@ def _make_elements(  # noqa: C901
     rooms: list[dict],
     beds: list[dict],
     sitrep: list[dict],
-    hymind: list[dict],
     discharges: list[dict],
     selected_dept: str | None,
     ward_only: bool,
@@ -55,7 +54,6 @@ def _make_elements(  # noqa: C901
         rooms: list of room objects
         beds: list of bed objects (from baserow)
         sitrep: list of sitrep statuses (from hylode)
-        hymind: list of patient level discharge predictions
         discharges: list of discharge statuses (from baserow)
         selected_dept: name of dept or None if show all
         ward_only: True if ward_only not campus; default False
@@ -82,22 +80,19 @@ def _make_elements(  # noqa: C901
     # TODO: fix naming (use 'encounter' in census and 'csn' in discharges)
     # convert csn to string since that's how encounter is stored in EMAP
     if discharges:
+        logger.info("Discharges found")
         discharge_lookup = {str(i.get("csn")): i for i in discharges}
     else:
         logger.warning("Discharges empty: no data available")
         discharge_lookup = {}
 
     if sitrep is not None:
+        logger.info("Sitrep data found!")
+
         sitrep_lookup = {i.get("csn"): i for i in sitrep}
     else:
         logger.warning("Sitrep empty: no data available")
         sitrep_lookup = {}
-
-    if hymind is not None:
-        hymind_lookup = {i.get("episode_slice_id"): i for i in hymind}
-    else:
-        logger.warning("Hymind empty: no data available")
-        hymind_lookup = {}
 
     preset_map_positions = (
         False
@@ -117,8 +112,6 @@ def _make_elements(  # noqa: C901
         encounter = census_lookup.get(location_string, {}).get("encounter", "")
         discharge_status = discharge_lookup.get(encounter, {}).get("status", "")
         wim = sitrep_lookup.get(encounter, {}).get("wim_1", -1)
-        episode_slice_id = sitrep_lookup.get(encounter, {}).get("episode_slice_id", -1)
-        yhat_dc = hymind_lookup.get(episode_slice_id, {}).get("prediction_as_real", -1)
 
         data = dict(
             id=location_string,
@@ -137,7 +130,6 @@ def _make_elements(  # noqa: C901
             dc_status=discharge_status,
             wim=wim,
             sitrep=sitrep_lookup.get(encounter, {}),
-            yhat_dc=yhat_dc,
         )
         if preset_map_positions:
             position = dict(
@@ -239,7 +231,6 @@ def _prepare_cyto_elements_campus(
         rooms,
         beds,
         sitrep=[{}],
-        hymind=[{}],
         discharges=[{}],
         selected_dept=None,
         ward_only=False,
@@ -256,7 +247,6 @@ def _prepare_cyto_elements_campus(
         Input(ids.ROOMS_OPEN_STORE, "data"),
         Input(ids.BEDS_STORE, "data"),
         Input(ids.SITREP_STORE, "data"),
-        Input(ids.HYMIND_DC_STORE, "data"),
         Input(ids.DISCHARGES_STORE, "data"),
         Input(ids.DEPT_SELECTOR, "value"),
         Input(ids.ACC_BED_SUBMIT_STORE, "data"),
@@ -272,7 +262,6 @@ def _prepare_cyto_elements_ward(
     rooms: list[dict],
     beds: list[dict],
     sitrep: list[dict],
-    hymind: list[dict],
     discharges: list[dict],
     dept: str,
     bed_submit_store: dict,
@@ -291,7 +280,6 @@ def _prepare_cyto_elements_ward(
             rooms,
             beds,
             sitrep,
-            hymind,
             discharges,
             selected_dept=dept,
             ward_only=True,

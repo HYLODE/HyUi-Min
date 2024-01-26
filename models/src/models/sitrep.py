@@ -8,7 +8,7 @@ class BedRow(BaseModel):
     unit_order: int | None
     closed: bool
     covid: bool
-    bed: str
+    bed_id: str
     room: str
 
 
