@@ -38,11 +38,6 @@ a_and_e = _NavLink(
 sitrep_icus = _NavLink(
     title="Critical Care", path="/sitrep/icus", icon="healthicons:critical-care-outline"
 )
-perrt = _NavLink(title="PERRT", path="/sitrep/perrt", icon="carbon:stethoscope")
-
-ed_predictor = _NavLink(
-    title="ED Predictor", path="/ed/table", icon="carbon:machine-learning-model"
-)
 
 
 def create_side_navbar() -> dmc.Navbar:
@@ -131,29 +126,6 @@ def create_side_nave_content() -> dmc.Stack:
                 href=pqip.path,
                 variant="text",
                 target="_blank",
-            ),
-            dmc.Divider(
-                labelPosition="left",
-                label=[
-                    DashIconify(
-                        icon="healthicons:ambulance-outline",
-                        width=20,
-                        style={"marginRight": 10},
-                        color=dmc.theme.DEFAULT_COLORS["indigo"][5],
-                    ),
-                    "Emergencies",
-                ],
-                my=20,
-            ),
-            create_main_nav_link(
-                icon=perrt.icon,
-                label=perrt.title,
-                href=perrt.path,
-            ),
-            create_main_nav_link(
-                icon=ed_predictor.icon,
-                label=ed_predictor.title,
-                href=ed_predictor.path,
             ),
             dmc.Divider(
                 labelPosition="left",
