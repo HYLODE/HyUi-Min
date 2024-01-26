@@ -66,4 +66,4 @@ def pong_slow() -> dict[str, str]:
 @app.get("/ping/fast")
 def pong_fast() -> dict[str, str]:
     now = arrow.utcnow().format("YYYY-MM-DD HH:mm:ss.SSS")
-    return now
+    return {"request_time": now}
