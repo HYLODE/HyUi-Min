@@ -12,6 +12,9 @@ from web.pages.sitrep.callbacks.discharges import post_discharge_status
 from web.pages.sitrep.callbacks.utils import make_sitrep_badge
 from web.style import colors
 
+
+from web.logger import logger
+
 DEBUG = True
 
 
@@ -277,7 +280,10 @@ def patient_accordion_item(
         control, panel = None, None
         return dmc.AccordionControl(control), dmc.AccordionPanel(panel)
 
+    logger.info(f"Node contents: {node}")
     data = node.get("data", {})
+
+    logger.info(f"Data contents: {data}")
 
     if data.get("closed"):
         control = dmc.Group(

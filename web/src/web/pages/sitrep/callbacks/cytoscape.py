@@ -80,12 +80,15 @@ def _make_elements(  # noqa: C901
     # TODO: fix naming (use 'encounter' in census and 'csn' in discharges)
     # convert csn to string since that's how encounter is stored in EMAP
     if discharges:
+        logger.info("Discharges found")
         discharge_lookup = {str(i.get("csn")): i for i in discharges}
     else:
         logger.warning("Discharges empty: no data available")
         discharge_lookup = {}
 
     if sitrep is not None:
+        logger.info("Sitrep data found!")
+
         sitrep_lookup = {i.get("csn"): i for i in sitrep}
     else:
         logger.warning("Sitrep empty: no data available")
