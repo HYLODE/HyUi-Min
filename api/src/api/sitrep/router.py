@@ -67,10 +67,9 @@ def get_mock_beds(department: str) -> list[BedRow]:
             bed_physical=[{"id": 1, "value": "Option", "color": "light-blue"}],
             unit_order=3,
             closed=False,
-            bed="a-b",
-            bed_label="1bed-2label",
-            room="SR-room",
             covid=False,
+            bed_id="a-b",  # is this bed_id or hl7_bed?
+            room="SR-room",
         )
     ]
 
