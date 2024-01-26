@@ -55,15 +55,6 @@ beat_schedule = {
         ),
         "kwargs": {"expires": (24 * 3600) + 60},  # 24 hours + 1 minute
     },
-    web_ids.ELECTIVES_STORE: {
-        "task": "web.celery_tasks.get_response",
-        "schedule": crontab(minute=0, hour=0),  # daily at midnight
-        "args": (
-            API_URLS[web_ids.ELECTIVES_STORE],
-            web_ids.ELECTIVES_STORE,
-        ),
-        "kwargs": {"expires": (24 * 3600) + 60},  # 24 hours + 1 minute
-    },
 }
 
 

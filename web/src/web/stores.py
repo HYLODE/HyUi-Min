@@ -8,7 +8,6 @@ from dash import Input, Output, callback, dcc, html
 from typing import Optional
 
 from models.beds import Bed, Department, Room
-from models.electives import MergedData
 from models.sitrep import SitrepRow
 from web import ids, SITREP_DEPT2WARD_MAPPING
 from web.logger import logger, logger_timeit
@@ -99,17 +98,6 @@ def _store_beds(_: int) -> list[dict]:
 
 
 @callback(
-    Output(ids.ELECTIVES_STORE, "data"),
-    Input(ids.STORE_TIMER_6H, "n_intervals"),
-)
-@logger_timeit()
-def _store_electives(_: int) -> list[dict]:
-    task = ids.ELECTIVES_STORE
-    data = _get_or_refresh_cache(task)
-    return [MergedData.parse_obj(row).dict() for row in data]
-
-
-@callback(
     Output(ids.SITREP_STORE, "data"),
     Input(ids.STORE_TIMER_1H, "n_intervals"),
 )
@@ -139,7 +127,6 @@ web_stores = html.Div(
         dcc.Store(id=ids.DEPT_STORE),
         dcc.Store(id=ids.ROOM_STORE),
         dcc.Store(id=ids.BEDS_STORE),
-        dcc.Store(id=ids.ELECTIVES_STORE),
         dcc.Store(id=ids.SITREP_STORE),
     ]
 )
