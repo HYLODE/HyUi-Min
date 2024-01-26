@@ -15,7 +15,6 @@ class Settings(BaseSettings):
     baserow_username: str
 
     hycastle_url: AnyHttpUrl
-    towermail_url: AnyHttpUrl
 
     echo_sql: bool = False
 
